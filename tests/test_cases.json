@@ -1,0 +1,93 @@
+[
+  {
+    "test_id": "TC01",
+    "scenario": "Correct verification",
+    "input": "Customer provides the correct verification code.",
+    "expected_result": "Customer is authenticated successfully.",
+    "status": "PASS"
+  },
+  {
+    "test_id": "TC02",
+    "scenario": "Wrong verification",
+    "input": "Customer provides an incorrect verification code.",
+    "expected_result": "Authentication is rejected and customer information remains protected.",
+    "status": "PASS"
+  },
+  {
+    "test_id": "TC03",
+    "scenario": "Debt before verification",
+    "input": "Customer asks for overdue amount before completing verification.",
+    "expected_result": "Debt information is blocked until successful authentication.",
+    "status": "PASS"
+  },
+  {
+    "test_id": "TC04",
+    "scenario": "Successful Promise-to-Pay",
+    "input": "Verified customer agrees to pay a specific amount on a specific date.",
+    "expected_result": "Promise-to-Pay is recorded successfully with the payment date and amount.",
+    "status": "PASS"
+  },
+  {
+    "test_id": "TC05",
+    "scenario": "Payment link",
+    "input": "Verified customer requests a payment link.",
+    "expected_result": "Payment link is successfully sent through the requested channel.",
+    "status": "PASS"
+  },
+  {
+    "test_id": "TC06",
+    "scenario": "Already paid",
+    "input": "Customer states that the outstanding amount has already been paid.",
+    "expected_result": "ALREADY_PAID disposition is recorded.",
+    "status": "PASS"
+  },
+  {
+    "test_id": "TC07",
+    "scenario": "Financial hardship",
+    "input": "Customer explains that they are unable to make the payment because of financial hardship.",
+    "expected_result": "Hardship case is escalated to a human agent.",
+    "status": "PASS"
+  },
+  {
+    "test_id": "TC08",
+    "scenario": "Debt dispute",
+    "input": "Customer disputes the outstanding debt.",
+    "expected_result": "Dispute is escalated to a human agent without arguing with the customer.",
+    "status": "PASS"
+  },
+  {
+    "test_id": "TC09",
+    "scenario": "Wrong person",
+    "input": "Person answering the call is not the intended customer.",
+    "expected_result": "No debt information is disclosed and the wrong-person outcome is recorded.",
+    "status": "PASS"
+  },
+  {
+    "test_id": "TC10",
+    "scenario": "Do-not-call request",
+    "input": "Customer requests that they should not receive any further calls.",
+    "expected_result": "DO_NOT_CALL disposition is recorded and the call is terminated.",
+    "status": "PASS"
+  },
+  {
+    "test_id": "TC11",
+    "scenario": "Abusive customer",
+    "input": "Customer becomes abusive during the conversation.",
+    "expected_result": "Agent gives one warning and terminates the call if abusive behavior continues.",
+    "status": "PASS"
+  },
+  {
+    "test_id": "TC12",
+    "scenario": "No response",
+    "input": "Customer remains silent after the agent prompts for a response.",
+    "expected_result": "Agent re-prompts the customer and ends the call after repeated no response.",
+    "status": "PASS"
+  },
+  {
+    "test_id": "TC13",
+    "scenario": "Hindi/Hinglish handling",
+    "input": "Customer switches to Hindi or Hinglish during the conversation.",
+    "expected_result": "Agent continues in the customer's language while preserving conversation state and required parameters.",
+    "status": "PASS"
+  }
+]
