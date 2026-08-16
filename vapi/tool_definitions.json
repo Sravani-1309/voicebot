@@ -1,0 +1,142 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "verify_customer",
+      "description": "Verifies customer identity using the verification code provided by the customer before revealing any debt information.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "account_id": {
+            "type": "string",
+            "description": "Customer account ID, for example ACC-88392"
+          },
+          "verification_code": {
+            "type": "string",
+            "description": "Last 4 digits of PAN or birth year provided by the customer"
+          }
+        },
+        "required": [
+          "account_id",
+          "verification_code"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "log_promise_to_pay",
+      "description": "Logs the payment date and amount promised by the customer.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "account_id": {
+            "type": "string"
+          },
+          "ptp_date": {
+            "type": "string",
+            "description": "Date the customer promises to make the payment"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Amount the customer agreed to pay"
+          }
+        },
+        "required": [
+          "account_id",
+          "ptp_date",
+          "amount"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "send_payment_link",
+      "description": "Sends a payment link through SMS or WhatsApp.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "account_id": {
+            "type": "string"
+          },
+          "channel": {
+            "type": "string",
+            "enum": [
+              "SMS",
+              "WhatsApp",
+              "BOTH"
+            ]
+          }
+        },
+        "required": [
+          "account_id",
+          "channel"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "mark_disposition",
+      "description": "Records the final outcome of the customer call.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "account_id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "PTP_AGREED",
+              "ALREADY_PAID",
+              "DISPUTED",
+              "HARDSHIP_ESCALATED",
+              "WRONG_PERSON",
+              "DO_NOT_CALL",
+              "NO_RESPONSE"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "account_id",
+          "status"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "escalate_to_agent",
+      "description": "Escalates hardship, dispute, or other cases that require human assistance.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "account_id": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string",
+            "enum": [
+              "HARDSHIP_REQUEST",
+              "DISPUTE",
+              "CUSTOMER_REQUEST"
+            ]
+          }
+        },
+        "required": [
+          "account_id",
+          "reason"
+        ]
+      }
+    }
+  }
+]
